@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Terms from "./pages/Terms";
 import Policies from "./pages/Policies";
+import AdminLogin from "./pages/AdminLogin";
 import { COMPANY, waLink } from "./config/company";
 import WhatsAppButton from "./components/WhatsAppButton";
 
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/policies" element={<Policies />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
           <Route
             path="/admin"
             element={
