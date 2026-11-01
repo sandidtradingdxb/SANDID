@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { COMPANY } from "../config/company";
+import { COMPANY, waLink } from "../config/company";
 
 const VERTICALS = [
   { slug: "watches", label: "Watches" },
@@ -15,6 +15,30 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-ink text-paper border-b border-white/10">
+      {(COMPANY.phoneTel || COMPANY.email) && (
+        <div className="hidden md:block bg-black/25 text-xs font-mono">
+          <div className="max-w-7xl mx-auto px-6 h-8 flex items-center justify-between text-paper/70">
+            <span>Dubai, UAE · Sourcing from Hong Kong &amp; Singapore · Exporting to USA, UK &amp; Europe</span>
+            <span className="flex items-center gap-5">
+              {COMPANY.phoneTel && (
+                <a href={`tel:${COMPANY.phoneTel}`} className="hover:text-copper-light transition">
+                  {COMPANY.phoneDisplay || COMPANY.phoneTel}
+                </a>
+              )}
+              {COMPANY.email && (
+                <a href={`mailto:${COMPANY.email}`} className="hover:text-copper-light transition">
+                  {COMPANY.email}
+                </a>
+              )}
+              {waLink() && (
+                <a href={waLink()} target="_blank" rel="noreferrer" className="text-copper-light hover:text-white transition">
+                  WhatsApp us
+                </a>
+              )}
+            </span>
+          </div>
+        </div>
+      )}
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-3">
           <div className="bg-white rounded-lg px-2 py-1 flex items-center">

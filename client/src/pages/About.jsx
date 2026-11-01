@@ -4,8 +4,8 @@ import { COMPANY, waLink } from "../config/company";
 const PILLARS = [
   {
     num: "01",
-    title: "Sourced from Hong Kong & China",
-    body: "All our products are of Chinese and Hong Kong origin, which keeps supply consistent from one order to the next.",
+    title: "Sourced from Hong Kong & Singapore",
+    body: "We source our products through trusted suppliers in Hong Kong and Singapore, which keeps supply consistent from one order to the next.",
   },
   {
     num: "02",

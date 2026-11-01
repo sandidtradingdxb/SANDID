@@ -4,14 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: "#0B1220",
+        ink: "#0F2A52",
         slate: {
           850: "#16202F",
         },
-        paper: "#F6F4EF",
+        paper: "#F7F8FB",
         copper: {
-          DEFAULT: "#C9862A",
-          light: "#E0A857",
+          DEFAULT: "#B8892E",
+          light: "#D8AC4E",
         },
         teal: {
           DEFAULT: "#2F8577",

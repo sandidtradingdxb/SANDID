@@ -48,7 +48,7 @@ const SECTIONS = [
   },
   {
     title: "12. Product condition and warranty",
-    body: "Products are sourced from Hong Kong and China. Unless a listing states otherwise, products are supplied new and sealed. Any manufacturer warranty is passed through to the buyer as provided by the manufacturer; we do not offer additional warranty coverage beyond what is stated on the product listing.",
+    body: "Products are sourced from Hong Kong and Singapore. Unless a listing states otherwise, products are supplied new and sealed. Any manufacturer warranty is passed through to the buyer as provided by the manufacturer; we do not offer additional warranty coverage beyond what is stated on the product listing.",
   },
   {
     title: "13. Returns and disputes",
