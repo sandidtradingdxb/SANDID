@@ -33,17 +33,24 @@ const app = express();
 
 connectDB();
 
-// Accept the configured CLIENT_URL, its www/non-www counterpart, and localhost for dev.
-const configuredOrigin = process.env.CLIENT_URL;
-const allowedOrigins = configuredOrigin
-  ? [
-      configuredOrigin,
-      configuredOrigin.includes("://www.")
-        ? configuredOrigin.replace("://www.", "://")
-        : configuredOrigin.replace("://", "://www."),
-      "http://localhost:5173",
-    ]
-  : "*";
+// Allowed browser origins. CLIENT_URL may hold one address or several separated by
+// commas. Trailing slashes and spaces are ignored, and for each address the
+// www / non-www counterpart is allowed too. localhost is allowed for development.
+function buildAllowedOrigins(raw) {
+  if (!raw) return "*";
+  const list = new Set(["http://localhost:5173"]);
+  raw
+    .split(",")
+    .map((u) => u.trim().replace(/\/+$/, ""))
+    .filter(Boolean)
+    .forEach((u) => {
+      list.add(u);
+      list.add(u.includes("://www.") ? u.replace("://www.", "://") : u.replace("://", "://www."));
+    });
+  return [...list];
+}
+const allowedOrigins = buildAllowedOrigins(process.env.CLIENT_URL);
+console.log("CORS allowed origins:", allowedOrigins);
 
 app.use(
   cors({
