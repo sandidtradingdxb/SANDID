@@ -90,7 +90,7 @@ export default function ProductDetail() {
                         {t.minQty}
                         {t.maxQty ? `–${t.maxQty}` : "+"} {product.unit}
                       </td>
-                      <td className="py-1.5 text-right font-medium">AED {t.pricePerUnit.toFixed(2)} / unit</td>
+                      <td className="py-1.5 text-right font-medium">USD {t.pricePerUnit.toFixed(2)} / unit</td>
                     </tr>
                   ))}
                 </tbody>
@@ -111,7 +111,7 @@ export default function ProductDetail() {
                 />
                 {currentPrice && (
                   <span className="font-mono text-sm text-ink/70">
-                    = AED {(currentPrice * qty).toLocaleString(undefined, { maximumFractionDigits: 2 })} total
+                    = USD {(currentPrice * qty).toLocaleString(undefined, { maximumFractionDigits: 2 })} total
                   </span>
                 )}
               </div>

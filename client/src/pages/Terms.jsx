@@ -16,7 +16,7 @@ const SECTIONS = [
   },
   {
     title: "4. Accepted payment methods",
-    body: "Orders placed through the Site are submitted as quote requests. After reviewing your request we will send an invoice, and payment terms (such as bank transfer in AED or another agreed currency) are confirmed on that invoice before the order is processed.",
+    body: "Orders placed through the Site are submitted as quote requests. After reviewing your request we will send an invoice, and payment terms (such as bank transfer in USD or another agreed currency) are confirmed on that invoice before the order is processed.",
   },
   {
     title: "5. Pricing and currency",

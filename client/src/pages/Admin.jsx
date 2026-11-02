@@ -207,7 +207,7 @@ export default function Admin() {
       return;
     }
     if (form.priceTiers.length === 0 || form.priceTiers.some((t) => !t.minQty || !t.pricePerUnit)) {
-      setFormError("Every price tier needs at least a minimum quantity and a price per unit (AED).");
+      setFormError("Every price tier needs at least a minimum quantity and a price per unit (USD).");
       return;
     }
 
@@ -285,13 +285,13 @@ export default function Admin() {
                   {q.items.map((it, i) => (
                     <tr key={i} className="ledger-row">
                       <td className="py-1">{it.productName} ({it.sku})</td>
-                      <td className="py-1 text-right">{it.quantity} × AED {it.unitPriceAtRequest?.toFixed(2)}</td>
+                      <td className="py-1 text-right">{it.quantity} × USD {it.unitPriceAtRequest?.toFixed(2)}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
               <p className="text-right font-mono text-sm mt-2 font-medium">
-                Est. total: AED {q.estimatedTotal?.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                Est. total: USD {q.estimatedTotal?.toLocaleString(undefined, { maximumFractionDigits: 2 })}
               </p>
             </div>
           ))}
@@ -453,7 +453,7 @@ export default function Admin() {
 
             <div>
               <label className="block text-xs font-mono uppercase text-ink/50 mb-2">
-                Bulk price tiers (AED per unit) *
+                Bulk price tiers (USD per unit) *
               </label>
               <div className="space-y-2">
                 {form.priceTiers.map((t, i) => (
@@ -475,7 +475,7 @@ export default function Admin() {
                       value={t.maxQty}
                       onChange={(e) => updateTier(i, "maxQty", e.target.value)}
                     />
-                    <span className="text-ink/40 text-sm">AED</span>
+                    <span className="text-ink/40 text-sm">USD</span>
                     <input
                       type="number"
                       min="0"
@@ -549,7 +549,7 @@ export default function Admin() {
                     </p>
                     {p.priceTiers?.[0] && (
                       <p className="text-xs text-ink/50 font-mono">
-                        from AED {Math.min(...p.priceTiers.map((t) => t.pricePerUnit)).toFixed(2)}/{p.unit}
+                        from USD {Math.min(...p.priceTiers.map((t) => t.pricePerUnit)).toFixed(2)}/{p.unit}
                       </p>
                     )}
                   </div>

@@ -37,7 +37,7 @@ export default function ProductCard({ product }) {
             <span className="font-mono text-xs text-copper">Sign in for price</span>
           ) : (
             <span className="font-mono text-sm font-medium">
-              from AED {lowestTier?.pricePerUnit?.toFixed(2)}
+              from USD {lowestTier?.pricePerUnit?.toFixed(2)}
             </span>
           )}
         </div>

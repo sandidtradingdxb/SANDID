@@ -9,10 +9,10 @@ export const COMPANY = {
   addressLine1: "Building: Al Safi 1-204, Office C-62",
   city: "Al Mararr, Dubai",
   country: "United Arab Emirates",
-  phoneDisplay: "", // e.g. "+971 50 123 4567"
-  phoneTel: "", // digits with country code, e.g. "+971501234567" (used for tel: and wa.me)
-  email: "", // e.g. "sales@yourdomain.com"
-  currency: "AED",
+  phoneDisplay: "+971 55 926 1213",
+  phoneTel: "+971559261213", // used for tel: and wa.me links
+  email: "Sandidtradingdxb@gmail.com",
+  currency: "USD",
 };
 
 export const waDigits = () => (COMPANY.phoneTel || "").replace(/\D/g, "");

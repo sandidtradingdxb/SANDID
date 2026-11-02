@@ -5,7 +5,7 @@ hidden until a business account is reviewed and approved by an admin.
 
 **Company:** Building Al Safi 1-204, Office C-62, Al Mararr, Dubai, UAE
 (edit `client/src/config/company.js` to update — it feeds the footer, the Contact page,
-and the WhatsApp links). Prices are displayed in AED.
+and the WhatsApp links). Prices are displayed in USD.
 
 ## Stack
 
@@ -78,7 +78,7 @@ npm run seed
 ```
 
 This creates the 8 categories (Watches, Computers, Mobile Phones and Electronic Appliances,
-each with a parts & accessories category), 8 sample products with placeholder AED prices
+each with a parts & accessories category), 8 sample products with placeholder USD prices
 (replace them in Admin > Products), and your admin account.
 
 ### 5. Run it

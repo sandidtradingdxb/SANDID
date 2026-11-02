@@ -4,7 +4,7 @@ const Category = require("./models/Category");
 const Product = require("./models/Product");
 const User = require("./models/User");
 
-// Note: the products below are SAMPLE listings with placeholder AED prices and no images.
+// Note: the products below are SAMPLE listings with placeholder USD prices and no images.
 // Replace them (Admin > Products) with your real catalogue and prices before going live.
 async function seed() {
   await mongoose.connect(process.env.MONGO_URI);

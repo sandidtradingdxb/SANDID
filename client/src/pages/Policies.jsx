@@ -76,7 +76,7 @@ const GROUPS = [
     id: "pricing",
     title: "Pricing & Description",
     paragraphs: [
-      "Product listings on this site include a description, brand, minimum order quantity (MOQ), and tiered pricing by quantity, shown in AED to approved trade accounts.",
+      "Product listings on this site include a description, brand, minimum order quantity (MOQ), and tiered pricing by quantity, shown in USD to approved trade accounts.",
       "In line with card scheme and banking compliance requirements, we do not accept payments from cards issued in, or transactions originating from, sanctioned countries, including but not limited to Iran, Cuba, North Korea, Sudan, South Sudan, Ukraine, Syria, the Russian Federation, Myanmar, and Yemen.",
     ],
   },
