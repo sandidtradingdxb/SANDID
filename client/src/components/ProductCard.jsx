@@ -10,7 +10,7 @@ export default function ProductCard({ product }) {
     >
       <div className="aspect-[4/3] bg-slate-850/5 flex items-center justify-center border-b border-ink/10">
         {product.images?.[0] ? (
-          <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover" />
+          <img src={product.images[0]} alt={product.name} className="w-full h-full object-contain bg-white" />
         ) : (
           <span className="font-mono text-xs text-ink/30">NO IMAGE</span>
         )}

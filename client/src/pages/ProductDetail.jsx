@@ -38,7 +38,7 @@ export default function ProductDetail() {
       {/* Image */}
       <div className="aspect-square bg-white border border-ink/10 flex items-center justify-center">
         {product.images?.[0] ? (
-          <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover" />
+          <img src={product.images[0]} alt={product.name} className="w-full h-full object-contain bg-white" />
         ) : (
           <span className="font-mono text-xs text-ink/30">NO IMAGE</span>
         )}

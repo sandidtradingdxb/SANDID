@@ -14,6 +14,57 @@ const emptyForm = {
   priceTiers: [{ minQty: 1, maxQty: "", pricePerUnit: "" }],
 };
 
+
+// Photos are kept as one comma-separated string. Uploaded photos are data URIs
+// ("data:image/jpeg;base64,....") that contain a comma themselves, so only split on
+// a comma that is followed by the start of another image address.
+function splitImages(str) {
+  return (str || "")
+    .split(/,\s*(?=https?:\/\/|data:)/)
+    .map((x) => x.trim())
+    .filter(Boolean);
+}
+
+// Shrink a photo before upload: max 1200px on the long side, JPEG quality 0.82.
+// Keeps the catalogue fast. Falls back to the original file if anything fails.
+function compressImage(file) {
+  return new Promise((resolve) => {
+    if (!file.type.startsWith("image/") || file.type === "image/gif") return resolve(file);
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      try {
+        const max = 1200;
+        const scale = Math.min(1, max / Math.max(img.width, img.height));
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.round(img.width * scale);
+        canvas.height = Math.round(img.height * scale);
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        canvas.toBlob(
+          (blob) => {
+            URL.revokeObjectURL(url);
+            if (!blob || blob.size >= file.size) return resolve(file);
+            resolve(new File([blob], file.name.replace(/\.\w+$/, "") + ".jpg", { type: "image/jpeg" }));
+          },
+          "image/jpeg",
+          0.82
+        );
+      } catch {
+        URL.revokeObjectURL(url);
+        resolve(file);
+      }
+    };
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      resolve(file);
+    };
+    img.src = url;
+  });
+}
+
 export default function Admin() {
   const [tab, setTab] = useState("pending");
   const [buyers, setBuyers] = useState([]);
@@ -83,17 +134,14 @@ export default function Admin() {
       const uploadedUrls = [];
       for (const file of files) {
         const body = new FormData();
-        body.append("image", file);
+        body.append("image", await compressImage(file));
         const res = await api.post("/uploads", body, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         uploadedUrls.push(res.data.url);
       }
       setForm((f) => {
-        const existing = f.images
-          .split(",")
-          .map((s) => s.trim())
-          .filter(Boolean);
+        const existing = splitImages(f.images);
         return { ...f, images: [...existing, ...uploadedUrls].join(", ") };
       });
     } catch (err) {
@@ -169,10 +217,7 @@ export default function Admin() {
       brand: form.brand,
       category: form.category,
       description: form.description,
-      images: form.images
-        .split(",")
-        .map((s) => s.trim())
-        .filter(Boolean),
+      images: splitImages(form.images),
       moq: Number(form.moq) || 1,
       unit: form.unit,
       stockQty: Number(form.stockQty) || 0,
@@ -373,10 +418,7 @@ export default function Admin() {
 
               {form.images && (
                 <div className="flex flex-wrap gap-2 mb-2">
-                  {form.images
-                    .split(",")
-                    .map((s) => s.trim())
-                    .filter(Boolean)
+                  {splitImages(form.images)
                     .map((url, i) => (
                       <div key={i} className="relative">
                         <img src={url} alt="" className="w-16 h-16 object-cover rounded border border-ink/10" />
@@ -384,10 +426,7 @@ export default function Admin() {
                           type="button"
                           onClick={() =>
                             setForm((f) => {
-                              const remaining = f.images
-                                .split(",")
-                                .map((s) => s.trim())
-                                .filter((s) => s && s !== url);
+                              const remaining = splitImages(f.images).filter((s) => s !== url);
                               return { ...f, images: remaining.join(", ") };
                             })
                           }
